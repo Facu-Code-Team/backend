@@ -29,7 +29,7 @@ const Publications = sequelize.define("publications", {
     type: DataTypes.STRING(200)
   },
   State: {
-    type: DataTypes.ENUM("nuevo", "usado", "refurbished", "reparado"),
+    type: DataTypes.ENUM("nuevo", "usado", "poco usado", "reparado"),
     allowNull: false,
     defaultValue: "nuevo"
   },
@@ -38,13 +38,17 @@ const Publications = sequelize.define("publications", {
   },
   ID_Category: {
     type: DataTypes.INTEGER,
-    allowNull: true,
+    allowNull: false,
   },
   ID_SubCategory: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
   ID_City: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  ID_Sellers: {
     type: DataTypes.INTEGER,
     allowNull: true
   }
@@ -61,6 +65,13 @@ Publications.associate = (models) => {
     onUpdate: 'CASCADE',
   });
 
+  Publications.belongsTo(models.Sellers, {
+    foreignKey: 'ID_Sellers',
+    as: 'Seller',
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+  });
+
   Publications.belongsTo(models.SubCategory, {
     foreignKey: 'ID_SubCategory',
     onDelete: 'RESTRICT',
@@ -69,9 +80,16 @@ Publications.associate = (models) => {
 
   Publications.belongsTo(models.City, {
     foreignKey: 'ID_City',
+    as: 'City',
     onDelete: 'RESTRICT',
     onUpdate: 'CASCADE',
   });
+
+  Publications.hasMany(models.OrderDetail, {
+    foreignKey: 'ID_Publications',
+    as: 'OrderDetails'
+  });
+
 };
 
 export default Publications;
