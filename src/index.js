@@ -26,6 +26,7 @@ const __dirname = path.dirname(__filename);
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 app.use(express.json({ limit: '30mb' }));
 
+
 app.use(publicationRouter);
 app.use(buyerRouter);
 app.use(contactRouter);
