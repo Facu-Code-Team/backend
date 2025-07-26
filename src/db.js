@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: './src/.env' });
 
 // Usa MYSQL_URL (interna) o MYSQL_URL_PUBLIC (pública) si DATABASE_URL no está disponible
-const dbUrl = process.env.MYSQL_URL || process.env.MYSQL_URL_PUBLIC || process.env.DATABASE_URL;
+const dbUrl = process.env.MYSQL_URL || process.env.MYSQL_PUBLIC_URL || process.env.DATABASE_URL;
 
 if (!dbUrl) {
   throw new Error('No se encontró ninguna URL de base de datos (MYSQL_URL, MYSQL_URL_PUBLIC o DATABASE_URL)');
