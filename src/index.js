@@ -68,7 +68,7 @@ async function main() {
     console.log("Base de datos sincronizada");
 
     server.listen(PORT, () => {
-      console.log(`Servidor corriendo en http://localhost:${PORT}`);
+      console.log(`Servidor corriendo en ${PORT}`);
     });
   } catch (err) {
     console.error("Error al conectar con la base de datos:", err);

@@ -1,1 +1,1 @@
-export const PORT = process.env.DB_PORT;
+export const PORT = process.env.PORT || 3000; // Fallback a 3000 si no se proporciona PORT
