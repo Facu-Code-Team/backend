@@ -17,13 +17,6 @@ import cors from "cors";
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-sequelize.sync({ force: true }) 
-  .then(() => {
-    console.log("Tablas creadas con éxito");
-    app.listen(PORT, () => console.log(` Servidor corriendo en puerto ${PORT}`));
-  })
-  .catch(err => console.error("Error sincronizando la base de datos:", err));
-
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {

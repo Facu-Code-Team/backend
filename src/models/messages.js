@@ -41,7 +41,7 @@ Messages.associate = (models) => {
     Messages.belongsTo(models.Buyers, {
         foreignKey: 'sender_id',
         as: 'Sender'
-    });
+    });``
 };
 
 export default Messages;
